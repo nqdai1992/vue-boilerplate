@@ -4,13 +4,13 @@
       <v-form ref="form" class="product-info" v-model="valid">
         <v-layout>
           <v-flex class="px-5" xs12 md6>
-            <v-text-field :rules="[rules.required]" v-model="productName" label="Product name"></v-text-field>
-            <v-text-field type="number" :rules="[rules.required]" v-model="price" label="Price"></v-text-field>
-            <v-text-field type="number" :rules="[rules.required]" v-model="priceCost" label="Price cost"></v-text-field>
+            <v-text-field id="product__name" :rules="[rules.required]" v-model="productName" label="Product name"></v-text-field>
+            <v-text-field id="product__price" type="number" :rules="[rules.required]" v-model="price" label="Price"></v-text-field>
+            <v-text-field id="product__price-cost" type="number" :rules="[rules.required]" v-model="priceCost" label="Price cost"></v-text-field>
             <v-checkbox v-model="status" label="Status"></v-checkbox>
           </v-flex>
           <v-flex class="px-5" xs12 md6>
-            <v-select label="Unit" v-model="unit" :items="listUnit" item-text="label" item-value="id"></v-select>
+            <v-select id="product__price-unit" label="Unit" v-model="unit" :items="listUnit" item-text="label" item-value="id"></v-select>
           </v-flex>
         </v-layout>
       </v-form>
