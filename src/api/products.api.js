@@ -19,15 +19,16 @@ const getProduct = (productId) => {
 // const createProduct = (payload) => httpClient.post(END_POINT, payload)
 const createProduct = (payload) => {
     let storage = []
-    clientStorage.getItem('products')
+    return clientStorage.getItem('products')
     .then(value => {
+        console.log(value)
         if (value) storage = value
+        storage.push({
+            productId: Date.now(),
+            ...payload
+        })
+        clientStorage.setItem("products", storage)
     })
-    storage.push({
-        productId: Date.now(),
-        ...payload
-    })
-    return clientStorage.setItem("products", storage)
 }
 // const updateProduct = (payload) => httpClient.put(`${END_POINT}`, payload)
 const updateProduct = (payload) => {
