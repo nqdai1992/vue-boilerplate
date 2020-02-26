@@ -10,6 +10,12 @@ import './plugins/dialog'
 import './plugins/snackbar'
 
 Vue.config.productionTip = false
+let v = new Vue({
+  router,
+  store,
+  vuetify,
+  render: h => h(App)
+})
 let seedDB = [...Array(100).keys()].map((element, index) => {
   return {
     productId: index,
@@ -25,17 +31,12 @@ let seedDB = [...Array(100).keys()].map((element, index) => {
 });
 clientStorage.getItem("products")
 .then(value => {
-  console.log(value)
   if (!value) {
-    clientStorage.setItem("products", seedDB)
-  }
+		return clientStorage.setItem("products", seedDB)
+	}
 })
-
-let v = new Vue({
-  router,
-  store,
-  vuetify,
-  render: h => h(App)
-}).$mount('#app')
+.then (() => {
+	v.$mount('#app')
+})
 
 export default v
