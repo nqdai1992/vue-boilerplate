@@ -10,7 +10,6 @@
             <v-checkbox v-model="status" label="Status"></v-checkbox>
           </v-flex>
           <v-flex class="px-5" xs12 md6>
-            <v-select label="Product type" v-model="productType" :items="processCategories" item-text="label" item-value="id"></v-select>
             <v-select label="Unit" v-model="unit" :items="listUnit" item-text="label" item-value="id"></v-select>
           </v-flex>
         </v-layout>
@@ -20,7 +19,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
 export default {
   props: {
     initItem: {
@@ -73,9 +71,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('CategoryStore', [
-      'processCategories'
-    ]),
     payload () {
       return {
         productName: this.productName,
@@ -88,9 +83,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions('CategoryStore', [
-      'fetchCategories'
-    ]),
     convertInitItem (item) {
       if (!item || Object.keys(item).length === 0) return 
       this.productName = item.productName;

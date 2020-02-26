@@ -37,6 +37,9 @@
           <template v-slot:item.productName="{item}">
             <router-link :to="`/edit-product/${item.productId}`">{{ item.productName }}</router-link>
           </template>
+          <template v-slot:item.productTypeId="{item}">
+            <span>{{ item.label }}</span>
+          </template>
           <template v-slot:item.published="{ item }">
             <div>
               <v-icon v-if="item.status" color="green">done</v-icon>

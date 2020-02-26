@@ -10,8 +10,8 @@ import {
 export default {
     async fetchProducts ({ commit }) {
         try {
-            const response = await getAllProducts();
-            commit('SET_PRODUCTS', response.data)
+            const response = await getAllProducts() || [];
+            commit('SET_PRODUCTS', response)
         } catch (err) {
             throw new Error(err)
         }
