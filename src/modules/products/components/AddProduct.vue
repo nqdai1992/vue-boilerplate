@@ -1,11 +1,11 @@
 <template>
   <AppPage title="Add product">
     <template v-slot:page__actions>
-      <v-btn class="mr-3" color="secondary" small @click="$router.push('/')">
+      <v-btn id="button-back-list" class="mr-3" color="secondary" small @click="$router.push('/')">
         <v-icon>keyboard_backspace</v-icon>
         Back to product list
       </v-btn>
-      <v-btn color="success" small @click="createProduct">Create new product</v-btn>
+      <v-btn id="button-create-new-product" color="success" small @click="createProduct">Create new product</v-btn>
     </template>
     <template v-slot:page__content>
       <ProductInfo ref="product-info"/>

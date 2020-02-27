@@ -29,7 +29,7 @@ export default {
 
     async removeProduct (context, { productId = '' }) {
         try {
-            if (!productId) throw new Error('Product id is undefined') 
+            if (typeof productId === 'undefined') throw new Error('Product id is undefined') 
             return await deleteProduct(productId);
         } catch (err) {
             throw new Error(err)

@@ -10,7 +10,9 @@
             <v-checkbox v-model="status" label="Status"></v-checkbox>
           </v-flex>
           <v-flex class="px-5" xs12 md6>
-            <v-select id="product__price-unit" label="Unit" v-model="unit" :items="listUnit" item-text="label" item-value="id"></v-select>
+            <div id="product__price-unit">
+              <v-select label="Unit" v-model="unit" :items="listUnit" item-text="label" item-value="id"></v-select>
+            </div>
           </v-flex>
         </v-layout>
       </v-form>

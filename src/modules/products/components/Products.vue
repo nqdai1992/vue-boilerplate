@@ -2,6 +2,7 @@
   <AppPage title="Products">
       <template v-slot:page__search>
         <v-text-field
+          id="search-product"
           v-model="search"
           label="Search"
           solo
@@ -11,11 +12,11 @@
 
       <template v-slot:page__actions>
         <div class="d-flex">
-          <v-btn @click="$router.push('/add-product')" class="mr-2" color="success" small>
+          <v-btn id="button-add-product" @click="$router.push('/add-product')" class="mr-2" color="success" small>
             <v-icon small>add</v-icon>
             <span>Add</span>
           </v-btn>
-          <v-btn @click="removeHandle" color="error" :disabled="selected.length === 0" small>
+          <v-btn id="button-remove-product" @click="removeHandle" color="error" :disabled="selected.length === 0" small>
             <v-icon small>delete</v-icon>
             <span>Remove </span>
           </v-btn>
@@ -94,7 +95,9 @@ export default {
         state: 'error',
         content: `List item ids include: ${this.selected.map(item => item.productName).join(', ')}`,
         callback: async () => {
+          console.log(this.selected)
           for (let i = 0; i < this.selected.length; i++) {
+            console.log(this.selected[i].productId)
             await this.removeProduct({
               productId: this.selected[i].productId
             })
