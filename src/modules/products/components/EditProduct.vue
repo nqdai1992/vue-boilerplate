@@ -5,7 +5,7 @@
         <v-icon>keyboard_backspace</v-icon>
         Back to product list
       </v-btn>
-      <v-btn color="success" small @click="saveProduct">Save changes</v-btn>
+      <v-btn id="button-save-change" color="success" small @click="saveProduct">Save changes</v-btn>
     </template>
     <template v-slot:page__content>
       <ProductInfo ref="product-info" :init-item="processedProduct" />
