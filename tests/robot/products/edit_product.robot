@@ -6,11 +6,6 @@ Documentation     A test suite with a single test for edit product.
 Resource          resource.robot
 
 *** Test Cases ***
-Can back products list
-    Open Browser To Add Product Page
-    Click Element   //button[@id="button-back-list"]
-    Product Page Should Be Open
-    [Teardown]    Close Browser
 Edit valid product
   Open Browser To Product Page
   ${random int}   Evaluate	random.randint(1, 10)	modules=random
