@@ -1,7 +1,7 @@
 <template>
   <AppPage title="Edit product">
     <template v-slot:page__actions>
-      <v-btn class="mr-3" color="secondary" small @click="$router.push('/')"> 
+      <v-btn id="button-back-list" class="mr-3" color="secondary" small @click="$router.push('/')"> 
         <v-icon>keyboard_backspace</v-icon>
         Back to product list
       </v-btn>

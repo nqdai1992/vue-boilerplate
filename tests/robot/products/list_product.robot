@@ -8,6 +8,23 @@ Resource          resource.robot
 
 *** Test Cases ***
 
+Cancel Remove product
+    Open Browser To Product Page
+    ${random int}   Evaluate	random.randint(1, 10)	modules=random
+    ${productname}  Get Text  //div[@class="page__content"]//tbody//tr[${random int}]//a
+    Click Element   //div[@class="page__content"]//tbody//tr[${random int}]//div[@class="v-data-table__checkbox v-simple-checkbox"]
+    Click Element   //button[@id="button-remove-product"]
+    Click Element   //div[@class="v-dialog__content v-dialog__content--active"]//button[2]    
+    Input Search Product    ${productname}
+    Click Element   //div[@class="v-data-footer__select"]//div[@class="v-input__control"]
+    Click Element   //div[@class="v-list-item__title" and contains(text(), "All")]/ancestor::div[@role="option"]
+    ${rows} =       Get WebElements     //div[@class="page__content"]//table/tbody/tr/td[2]
+    ${names}=    Create List
+     :FOR    ${row}    IN    @{rows}
+     \      Append To List      ${names}     ${rows.text}
+    Should Contain Match        ${names}        ${productname}      case_insensitive=${TRUE}	# Python True is true.
+    [Teardown]    Close Browser
+
 Remove product
     Open Browser To Product Page
     ${random int}   Evaluate	random.randint(1, 10)	modules=random
@@ -22,11 +39,11 @@ Remove product
     ${names}=    Create List
      :FOR    ${row}    IN    @{rows}
      \      Log     ${row.text}
-     \      Append To List      ${names}
+     \      Append To List      ${names}        ${row.text}
     Should Not Contain Match        ${names}        ${productname}      case_insensitive=${TRUE}	# Python True is true.
     [Teardown]    Close Browser
 
-Search product
+Search valid product
     Open Browser To Product Page
      ${random int}   Evaluate	random.randint(1, 10)	modules=random
      ${productname}  Get Text  //div[@class="page__content"]//tbody//tr[${random int}]//a
@@ -37,6 +54,16 @@ Search product
      \      Log     ${row.text}
      \      Append To List      ${names}    ${row.text}
      Should Contain Match        ${names}        ${productname}*      case_insensitive=${TRUE}
+     [Teardown]    Close Browser
+
+Search invalid product
+    Open Browser To Product Page
+     Input Search Product    invalidProducts
+     ${rows} =       Get WebElements     //div[@class="page__content"]//table/tbody/tr/td[2]
+      ${names}=    Create List
+     :FOR    ${row}    IN    @{rows}
+     \      Append To List      ${names}    ${row.text}
+     Should Not Contain Match        ${names}        invalidProducts*      case_insensitive=${TRUE}
      [Teardown]    Close Browser
 
 Redirect to add product page
